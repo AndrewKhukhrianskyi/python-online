@@ -89,20 +89,24 @@ USER = 'admin'
 PWD = 'admin'
 
 def check():
-    if user_field.get(0.0, END) == USER and pwd_field.get(0.0, END) == PWD:
+    # Сохраняем текст, написанный пользователем в отдельные переменные 
+    usr = user_field.get(0.0, END)
+    pwd = pwd_field.get(0.0, END)
+
+    if usr[0:len(usr) - 1] == USER and pwd[0:len(pwd) - 1] == PWD:
         mb.showinfo('Успех!', f"Добро Пожаловать, {USER}!")
 
-    elif user_field.get(0.0, END) != USER and pwd_field.get(0.0, END) == PWD:
+    elif usr[0:len(usr) - 1] != USER and pwd[0:len(pwd) - 1] == PWD:
         mb.showerror('Провал!', f"Не пущу! Я не знаю тебя, {user_field.get(0.0, END)}")
 
-    elif user_field.get(0.0, END) == USER and pwd_field.get(0.0, END) != PWD:
+    elif usr[0:len(usr) - 1] == USER and pwd[0:len(pwd) - 1] != PWD:
         mb.showerror('Провал!', f"Неверный пароль, {user_field.get(0.0, END)}!")
 
-    elif user_field.get(0.0, END) == '' and pwd_field.get(0.0, END) != '':
+    elif usr[0:len(usr) - 1] == '' and pwd[0:len(pwd) - 1] == '':
         mb.showerror('Провал!', "Введи что-то!")
     
     else:
-        pass
+         mb.showerror('Провал!', "Была произведена иная ошибка! Перепроверьте данные и попробуйте снова.")
 
 
 root = Tk()

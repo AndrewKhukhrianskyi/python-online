@@ -1,0 +1,6 @@
+When developing a Tkinter application that deals with the file system,
+you need to provide a dialog that allows file selections.
+To do that, you can use the tkinter.filedialog module. 
+The following steps show how to display an open file dialog:
+
+Привет!

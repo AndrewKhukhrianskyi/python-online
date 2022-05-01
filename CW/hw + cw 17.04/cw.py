@@ -31,9 +31,11 @@ menubutton["menu"] = menubutton.menu
 menubutton.menu.add_checkbutton(label = "Рандомизировать", 
                                 variable = var,
                                 command = randomize)
+                                
 menubutton.menu.add_checkbutton(label = "Приветстовать", 
                                 variable = var,
                                 command = say_hello)
+
 menubutton.menu.add_checkbutton(label = "Попрощаться",
                                 variable = var,
                                 command = say_bye)
