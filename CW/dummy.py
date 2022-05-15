@@ -29,14 +29,17 @@ print(True + True + True)
 print(int(True))
 
 print(False - 2)
-'''
 
-from random import choice
+fives = []
 
-members = ['Глеб', "Женя", "Александр"]
-projects = ['Блокнот', "Калькулятор", "Шифратор (ROT)", "Викторина", "Органайзер"]
-
-for member in members:
-    reults = choice(projects)
-    print(member, reults)
-
+while True:
+    marks = input()
+    if marks == '0':
+        break
+    a = list(map(int, marks.split()))
+    for elem in a:
+        if a == 5:
+            fives.append(elem)
+    print(b)
+    print(f"Result: {int(len(b) / len(a) * 100)}")
+    '''
