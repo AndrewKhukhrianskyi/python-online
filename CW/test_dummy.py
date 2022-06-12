@@ -206,7 +206,7 @@ class Check:
 
 p = Check('Apple', 'Tree', 'Bite', 'CD', 'Clearing')
 p.check_word()
-'''
+
 import pytest
 # Pytest tasks
 class TestMaths:
@@ -234,3 +234,4 @@ class TestMaths:
 def test_type_list_checking(answer, result):
     answer = tuple(answer)
     assert isinstance(answer, result)
+'''
