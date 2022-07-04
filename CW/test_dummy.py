@@ -234,4 +234,82 @@ class TestMaths:
 def test_type_list_checking(answer, result):
     answer = tuple(answer)
     assert isinstance(answer, result)
+
+a, b, c = None, None, None # заготовки для ввода сторон
+even_array = [] # Массив, куда будут добавляться четные числа
+while a != 0 and b != 0 and c != 0: # Цикл прекратит работу, если одна из сторон будет равна 0
+    a = int(input('Enter 1 side: '))
+    b = int(input('Enter 2 side: '))
+    c = int(input('Enter 3 side: '))
+
+    if sum([a, b, c]) % 2 == 0:
+        even_array.append(sum([a, b, c]))
+
+perimeter_dict = {}
+
+for elem in range(len(even_array)):
+    perimeter_dict[f"triangle{elem}"] = even_array[elem]
+
+print(perimeter_dict)
+
+info = {}
+while True:
+    a = input('Enter key: ')
+    b = input('Enter value: ')
+    if a == 'good bye' or b == 'good bye':
+        break
+    info[a] = b
+
+print(info)
+
+uset_upd_data = {'Memory frame size  . . . .': '0',
+                     'Result set value . . . . . .': '16',
+                     'Max char display . . . . . .': '30',
+                     'Lock table . . . . . . . . .': 'EXCLUSIVE',
+                     'Skip locked data . . . . . .': 'YES'}
+
+a = list(uset_upd_data.keys())
+b = list(uset_upd_data.values())
+    
+for elem in range(len(uset_upd_data)):
+    print(a[elem], b[elem])
+
+
+def fib(n):
+    fib_0, fib_1 = 1, 1
+    for elem in range(n - 2):
+        fib_0, fib_1 = fib_1, fib_0 + fib_1
+    print(fib_1)
+
+fib(100000)
+
+def fib(n):
+    fib_0 = 1
+    yield fib_0
+
+    fib_1 = 1
+    yield fib_1
+
+    for elem in range(n - 2):
+        fib_0, fib_1 = fib_1, fib_0 + fib_1
+        yield fib_1 
+
+for elem in fib(10000000):
+    pass
+print(elem)
+
+
+def lucky_tickets():
+    lucky_arr = []
+    for number in range(100000, 1000000):
+        new_number = list(str(number)) 
+        for elem in range(len(new_number)):
+            new_number[elem] = int(new_number[elem])
+
+        if sum(new_number[0:3]) == sum(new_number[3:len(new_number)]):
+            lucky_arr.append(number)
+            
+    print(lucky_arr)   
+
+lucky_tickets()
 '''
