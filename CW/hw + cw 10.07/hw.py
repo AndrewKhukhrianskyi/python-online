@@ -1,15 +1,15 @@
 from math import sqrt
-from xml.dom import NoModificationAllowedErr
-
+'''
 # Task 1
 print("TASK 1")
 word = 'asdfghjkl;][poiuyhgtfrdsdfvghjklpokijhgfghjmkl;]'
 count = 0
-letter = 'a'
+letter = 'k'
 
 count = word.count(letter)
 print(count)
 
+'''
 # Task 2 
 print('TASK 2')
 def cycle(r = None,
@@ -31,4 +31,4 @@ def cycle(r = None,
                 return None
     return (r, d, S)
 
-print(cycle(r = 4))
+print(cycle(r=4))
