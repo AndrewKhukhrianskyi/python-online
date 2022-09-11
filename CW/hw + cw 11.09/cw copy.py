@@ -6,7 +6,7 @@ from time import sleep
 
 from label import Label
 from player import Player
-
+from enemy import Enemy
 
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
@@ -20,9 +20,11 @@ class Screen:
         self.x = x
         self.y = y
         self.heart = Label('x3')
-        self.player = Player(50, 'player.png')
         self.background = pg.image.load('background.jpg')
         self.health_icon = pg.image.load('heart.png')
+        self.enemy_list = ['enemy_1.png', 'enemy_2.png', 'enemy_3.png']
+        
+
 
 
     def draw_trees(self):
@@ -32,33 +34,37 @@ class Screen:
         self.background.blit(image, (randint(0, 400), -250))
 
     def run(self):
+        pg.init()
+        pg.time.set_timer(pg.USEREVENT, 500)
         screen = pg.display.set_mode((self.x, self.y))
         score_value = 0
         is_run = True
+        enemy_group = pg.sprite.Group()
+
         screen.fill(BLACK)
-        score = Label()
-        result = score.add_score(score_value)
-        score_text = score.font.render(result, True, WHITE)
+        
         while is_run:
-            
+            score = Label()
             pg.display.update()
             health_amount = self.heart.font.render('x3', True, WHITE)
-            self.health_icon.set_colorkey(WHITE)       
-            
+            self.health_icon.set_colorkey(WHITE)
+            result = score.add_score(score_value)
+            score_text = score.font.render(result, True, WHITE)
+            score_value += 1
 
-            # Подгрузка изображений
-            self.background.blit(self.health_icon, (5, 7))
-            self.background.blit(score_text, (300, 10))
-            self.background.blit(health_amount, (30, 10))
-            self.background.blit(self.player.image, self.player.rect)
-            screen.blit(self.background, (0, 0))
-
-            
-            
             for event in pg.event.get():
                 press = pg.key.get_pressed()
                 if event.type == pg.QUIT:
                     is_run = False
+                elif event.type == pg.USEREVENT:
+                   Enemy(choice(self.enemy_list), enemy_group)
+            
+            # Подгрузка изображений
+            self.background.blit(self.health_icon, (5, 7))
+            self.background.blit(score_text, (300, 10))
+            self.background.blit(health_amount, (30, 10))
+            #self.background.blit(self.player.image, self.player.rect)
+            screen.blit(self.background, (0, 0))
             
             if press[pg.K_0]:
                 screen.fill(BLACK)
@@ -67,28 +73,8 @@ class Screen:
                 sleep(3)
                 self.draw_trees()
             
-            elif press[pg.K_LEFT]:
-                self.player.move_left()
-            
-            elif press[pg.K_RIGHT]:
-                self.player.move_right()
-            
-            else:
-                self.player.default_pos()
-            self.player.update()
+            enemy_group.update() # обновляет состояние группы объектов (.update())
+            enemy_group.draw(self.background) # Отрисовываем группу объектов на поверхности (.draw())
 
 game = Screen(500, 500)
 game.run()
-
-'''
-player_list_move_right = ['player_right6.png', ...]
-FPS = 30
-
-def player_move(move_list, FPS):
-    anim_count = len(move_list)
-    for anim in range(anim_count):
-        result = FPS // 5
-        result -= anim
-        pg.image.load(move_list[result])
-
-'''
