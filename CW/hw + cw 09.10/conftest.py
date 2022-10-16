@@ -25,3 +25,11 @@ def package_fixture():
 @pytest.fixture(scope='session')
 def session_fixture():
     return 2
+
+@pytest.fixture()
+def send_numbers():
+    return 4, 2 
+
+@pytest.fixture()
+def check_pwd():
+    return ['admin', "морковка", "число"]
