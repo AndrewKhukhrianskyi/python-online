@@ -3,8 +3,6 @@ import pytest
 
 from selenium.webdriver.common.by import By # По какой характеристике ищем 
 
-from browser import open_browser
-
 def test_check_company_name():
     browser = open_browser()
     company_name_block = browser.find_element(by = By.CLASS_NAME, value = 'company-name')
